@@ -22,15 +22,14 @@ export SLURM_EXPORT_ENV=ALL
 # (On HPC systems, software is usually installed as “modules” to avoid version conflicts.)
 module load Anaconda3/2024.02-1
 module load Python/3.10.8-GCCcore-12.2.0 # essential to load latest GCC
-module load Mesa/22.2.4-GCCcore-12.2.0 # This is needed for pyvista plotting
 
 # Tell VTK/PyVista to use the OSMesa (Off-Screen) library
 export VTK_DEFAULT_OPENGL_WINDOW=vtkOSOpenGLRenderWindow
 
 # Define path variables here
-ENV="/mnt/parscratch/users/$(whoami)/envs/template"
-CODE="/mnt/parscratch/users/$(whoami)/scripts/ppln-template/src/template"
-BUILD="/mnt/parscratch/users/$(whoami)/data/demo"
+ENV="/mnt/parscratch/users/$(whoami)/envs/diff"
+CODE="/mnt/parscratch/users/$(whoami)/ppln-ibeat-diff/src/ibeat_diff"
+BUILD="/mnt/parscratch/users/$(whoami)/data/ibeat_diff"
 ARCHIVE="login1:/shared/abdominal_imaging/Shared/ibeat_diff"
 
 # srun runs your program on the allocated compute resources managed by Slurm
