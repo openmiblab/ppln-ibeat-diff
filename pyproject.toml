@@ -9,6 +9,7 @@ dependencies = [
   'pandas',
   'miblab',
   'miblab_data',
+  'tqdm',
 ]
 
 [tool.setuptools.packages.find]
