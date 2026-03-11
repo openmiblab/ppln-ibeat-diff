@@ -1,0 +1,7 @@
+numpy==2.3.3
+napari[all]==0.6.4
+matplotlib==3.10.6
+mdreg[ants]==0.5.2
+nibabel
+dipy
+pydmr==0.0.3
