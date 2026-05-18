@@ -1,0 +1,21 @@
+name: mc_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - python=3.10
+  - dcm2niix
+  - numpy
+  - matplotlib
+  - nibabel
+  - dipy
+  - tqdm
+  - scipy
+  - scikit-image
+  - pip:
+    - mdreg
+    # - napari[all]
+    # - PyQt5
+    - napari
+    - itk-elastix

@@ -2,13 +2,15 @@
 Automatic download of DIXON data from XNAT.
 """
 import logging
+import argparse
 
 from miblab import pipe
+from pathlib import Path
 from miblab_data.xnat import download_series
 from tqdm import tqdm
 
 
-PIPELINE = 'dixon'
+PIPELINE = 'dti'
 
 SIEMENS = {
     "series_description": [
@@ -35,7 +37,7 @@ TURKU_GE_SETUP = {
 } 
 SHEFFIELD_SETUP = {
     "series_description": [
-        # 'T2star_map_kidneys_cor-oblique_mbh'
+        'T2star_map_kidneys_cor-oblique_mbh'
     ]
 }
 SHEFFIELD_PATIENTS = {
@@ -54,12 +56,10 @@ BARI = {
     ]
 } 
 LEEDS = {
-    # "parameters/sequence": ["*fl3d2"]
-    'DTI_kidneys_cor-oblique_fb',
+    "parameters/sequence": ["*diff*"],
 }
 LEEDS_SETUP = {
-    "parameters/sequence": ["*fl3d2"],
-    "frames": [144]
+    "parameters/sequence": ["*diff*"],
 } 
 
 
@@ -172,7 +172,7 @@ def run(build, dir_output):
         try:
             download_series(
                 xnat_url="https://qib.shef.ac.uk",
-                output_dir=dir_output,
+                output_dir=str(dir_output),
                 log=True,
                 n_max=n_max,
                 **props
@@ -185,5 +185,13 @@ def run(build, dir_output):
 
 if __name__ == '__main__':
 
-    build = r"C:\Users\eic20eh\Documents\Data\iBEAt_Build"
-    pipe.run_stage(run, build, PIPELINE, __file__)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--build', required=True)
+    args = parser.parse_args()
+
+    build = Path(args.build)
+
+    dir_output = build / PIPELINE / "stage_1_download"
+    dir_output.mkdir(parents=True, exist_ok=True)
+
+    run(build, dir_output)

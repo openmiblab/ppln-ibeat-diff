@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: ppln-ibeat-diff
+Version: 0.0.0
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: miblab
+Requires-Dist: miblab_data
+Requires-Dist: tqdm
+Dynamic: license-file
